@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Project Details - Israfe Anael Magbag</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(16px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.7s ease-out both;
+            }
+            .gallery-image {
+                aspect-ratio: 16 / 10;
+                object-fit: cover;
+            }
+            body.lightbox-open {
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50 text-gray-900">
+        <nav class="bg-white shadow-lg sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <a href="../index.html" class="text-xl font-bold text-blue-600">Israfe Anael Magbag</a>
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="../index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm"
+                            >Home</a
+                        >
+                        <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm"
+                            >About Me</a
+                        >
+                        <a href="internship.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm"
+                            >Internship</a
+                        >
+                        <a href="works.html" class="text-blue-600 font-semibold bg-blue-50 px-3 py-2 rounded-md text-sm"
+                            >Sample Works</a
+                        >
+                        <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm"
+                            >Contact</a
+                        >
+                    </div>
+                    <button
+                        id="mobile-menu-button"
+                        class="md:hidden text-gray-700 hover:text-blue-600"
+                        aria-label="Open navigation menu"
+                    >
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden border-t">
+                <div class="px-4 py-3 space-y-1">
+                    <a href="../index.html" class="block px-3 py-2 text-gray-700">Home</a>
+                    <a href="about.html" class="block px-3 py-2 text-gray-700">About Me</a>
+                    <a href="internship.html" class="block px-3 py-2 text-gray-700">Internship</a>
+                    <a href="works.html" class="block px-3 py-2 text-blue-600 font-semibold">Sample Works</a>
+                    <a href="contact.html" class="block px-3 py-2 text-gray-700">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <main id="project-content"></main>
+
+        <footer class="bg-gray-900 text-gray-300 py-8 mt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-lg font-semibold text-white mb-2">Israfe Anael Magbag</p>
+                <p class="text-sm mb-4">IT Student | On-the-Job Training Portfolio</p>
+                <p class="text-xs text-gray-400">&copy; 2025 Israfe Anael Magbag. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script>
+            const image = (path, label) => ({ path, label });
+            const projects = {
+                lbdss: {
+                    title: "LBDSS",
+                    category: "Capstone Project",
+                    date: "November 2025",
+                    summary:
+                        "A web-based digital services platform developed for Barangay Lawang Bato to streamline resident document requests, job referrals, announcements, and administrative processes.",
+                    role: "Full-stack development, interface design, and system documentation",
+                    tools: ["Laravel", "Tailwind CSS", "Livewire", "Alpine.js", "MySQL"],
+                    highlights: [
+                        "Centralized digital requests for barangay documents and clearances",
+                        "Separate workflows for residents, administrators, and company users",
+                        "Job referral and applicant management features",
+                        "Reporting and dashboard views for administrative decision-making",
+                    ],
+                    generalUsersIntro: {
+                        title: "General Users",
+                        description:
+                            "This area covers the resident-facing side of LBDSS. Unregistered visitors can browse public information, while registered residents can access the job referral and document request services through their account.",
+                    },
+                    documentAdminIntro: {
+                        title: "Document Admin",
+                        description:
+                            "This area shows the administrative workflow for managing resident document services, from secure access and daily monitoring to request processing and report generation.",
+                    },
+                    jobReferralAdminIntro: {
+                        title: "Job Referral Admin",
+                        description:
+                            "This area covers the administrative side of the barangay job referral service, including account management, announcements, job listings, applicant processing, and reports.",
+                    },
+                    superAdminIntro: {
+                        title: "Super Admin",
+                        description:
+                            "This area shows the highest-level administrative controls in LBDSS, including access to system-wide account management, public content, barangay officials, reports, and activity monitoring.",
+                    },
+                    companyUsersIntro: {
+                        title: "Company Users",
+                        description:
+                            "This area shows the company-facing side of LBDSS, where registered employers manage their organization profile, job listings, applicants, processed applications, and reports.",
+                    },
+                    gallery: [
+                        {
+                            title: "Informative & Public Pages",
+                            access: "Unregistered and registered users",
+                            description:
+                                "These pages introduce residents to the barangay, its services, announcements, and public information before they sign in or submit a request.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-2026-09-08-17_32_35.png",
+                                    "Public landing page",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-about-page-2026-09-08-17_34_01.png",
+                                    "About page",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-contact-us-page-2026-09-08-17_35_33.png",
+                                    "Contact page",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-barangay-official-section-2026-09-08-17_34_23.png",
+                                    "Barangay officials section",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-sk-official-section-2026-09-08-17_34_46.png",
+                                    "SK officials section",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-view-announcement-2-2026-09-08-17_39_50.png",
+                                    "Announcement details",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Document Requests",
+                            access: "Unregistered and registered users",
+                            description:
+                                "Registered residents can use these guided forms to request common barangay documents digitally, reducing manual steps and making each request easier to track.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-cedula-request-2026-09-08-17_33_10.png",
+                                    "Cedula request",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-clearance-request-2026-09-08-17_33_23.png",
+                                    "Clearance request",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-indigency-request-2026-09-08-17_33_35.png",
+                                    "Indigency request",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Job Referral & Employment",
+                            access: "Registered users",
+                            description:
+                                "Registered residents can discover available opportunities, review job details, build a profile, and submit applications through the barangay job referral service.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-job-seeking-2026-09-08-17_35_13.png",
+                                    "Job seeking page",
+                                ),
+
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-job-seeking-2026-09-08-17_36_20.png",
+                                    "Job listing page",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-apply-to-job-3-2026-09-08-17_37_28.png",
+                                    "Job application form",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-account-registration-2026-09-08-17_40_49.png",
+                                    "Account registration page",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-job-profile-2026-09-08-17_36_53.png",
+                                    "Job profile page",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/GENERAL USERS/screencapture-barangaylawangbato-site-user-forgot-password-2026-09-08-17_41_15.png",
+                                    "Forgot password page",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Admin Login",
+                            access: "Authorized administrators",
+                            description:
+                                "The login page provides a secure entry point for authorized staff who manage resident document requests and administrative reports.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/screencapture-barangaylawangbato-site-admin-login-2026-09-08-17_57_13.png",
+                                    "Document admin login",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Admin Dashboard",
+                            access: "Authorized administrators",
+                            description:
+                                "The dashboard gives staff a high-level view of the document service activity and provides a starting point for navigating administrative tasks.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/screencapture-barangaylawangbato-site-admin-dashboard-2026-09-08-17_58_31.png",
+                                    "Admin dashboard",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Document Request Management",
+                            access: "Authorized administrators",
+                            description:
+                                "Staff can review and process incoming resident requests for barangay documents, helping move each request through the appropriate administrative status.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/screencapture-barangaylawangbato-site-admin-document-request-2026-09-08-18_00_07.png",
+                                    "Approved cedula request list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/screencapture-barangaylawangbato-site-admin-document-request-2026-09-08-18_00_20.png",
+                                    "Approved clearance request list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/screencapture-barangaylawangbato-site-admin-document-request-2026-09-08-18_00_36.png",
+                                    "Approved indigency request list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/screencapture-barangaylawangbato-site-admin-document-request-2026-09-08-18_01_33.png",
+                                    "Approved cedula request details",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/Screenshot 2026-09-08 180207.png",
+                                    "Approved clearance request details",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/Screenshot 2026-09-08 180224.png",
+                                    "Approved indigency request details",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/Screenshot 2026-09-11 153709.png",
+                                    "Pending cedula request list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/Screenshot 2026-09-11 153757.png",
+                                    "Pending clearance request list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/Screenshot 2026-09-11 153742.png",
+                                    "Pending indigency request list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/Screenshot 2026-09-08 180106.png",
+                                    "Archived request list",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Report Generation",
+                            access: "Authorized administrators",
+                            description:
+                                "Report screens help staff summarize document-service activity and review generated records for monitoring, accountability, and administrative decision-making.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/screencapture-barangaylawangbato-site-admin-report-2026-09-08-18_02_34.png",
+                                    "Report view",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/screencapture-barangaylawangbato-site-admin-generated-report-2026-09-08-18_02_58.png",
+                                    "Generated report",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/DOCUMENT ADMIN/Screenshot 2026-09-08 180327.png",
+                                    "Report output",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Admin Login",
+                            access: "Authorized administrators",
+                            description:
+                                "The login page provides secure access for staff responsible for managing the barangay job referral service.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/screencapture-barangaylawangbato-site-admin-login-2026-09-08-17_57_13.png",
+                                    "Job referral admin login",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Admin Dashboard",
+                            access: "Authorized administrators",
+                            description:
+                                "The dashboard provides staff with an overview of job referral activity and quick access to the main management areas.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/screencapture-barangaylawangbato-site-admin-dashboard-2026-09-10-14_05_41.png",
+                                    "Job referral admin dashboard",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Announcements",
+                            access: "Authorized administrators",
+                            description:
+                                "Staff can publish and manage announcements that keep residents informed about job opportunities, programs, and community updates.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/screencapture-barangaylawangbato-site-admin-announcement-section-2026-09-10-14_09_44.png",
+                                    "Announcement management",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/Screenshot 2026-09-10 140959.png",
+                                    "Add announcement form",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "User Accounts",
+                            access: "Authorized administrators",
+                            description:
+                                "The user account management area helps administrators review and maintain resident accounts connected to the job referral service.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/screencapture-barangaylawangbato-site-admin-user-account-management-2026-09-10-14_10_10.png",
+                                    "Active user accounts",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/Screenshot 2026-09-10 141046.png",
+                                    "Pending user accounts",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Applicants List",
+                            access: "Authorized administrators",
+                            description:
+                                "Administrators can review applicant records and follow the progress of residents who apply for posted opportunities.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/screencapture-barangaylawangbato-site-admin-job-referral-2026-09-10-14_11_22.png",
+                                    "Applicant list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/Screenshot 2026-09-10 141159.png",
+                                    "New applicants list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/Screenshot 2026-09-10 141141.png",
+                                    "Archived applicants list",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Company Accounts",
+                            access: "Authorized administrators",
+                            description:
+                                "This section supports the management of company accounts that participate in the barangay job referral network.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/screencapture-barangaylawangbato-site-admin-company-account-management-2026-09-10-14_12_11.png",
+                                    "Verified company accounts",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/Screenshot 2026-09-10 141625.png",
+                                    "Pending company accounts",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/Screenshot 2026-09-10 141641.png",
+                                    "Archived company accounts",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Job Listings",
+                            access: "Authorized administrators",
+                            description:
+                                "Administrators can manage the job opportunities shown to residents, including the listings submitted through participating companies.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/screencapture-barangaylawangbato-site-admin-job-listing-management-2026-09-10-14_16_58.png",
+                                    "Active job listings",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/Screenshot 2026-09-10 141711.png",
+                                    "Pending job listings",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Report Generation",
+                            access: "Authorized administrators",
+                            description:
+                                "Report screens summarize job referral activity and provide records that support monitoring, evaluation, and administrative decisions.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/screencapture-barangaylawangbato-site-admin-report-2026-09-10-14_17_22.png",
+                                    "Job referral report",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/screencapture-barangaylawangbato-site-admin-generated-report-2026-09-10-14_17_45.png",
+                                    "Generated job referral report",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/JOB REFERRAL ADMIN/Screenshot 2026-09-11 154233.png",
+                                    "Generated job referral report",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Super Admin Login",
+                            access: "Super administrators",
+                            description:
+                                "This is the secure entry point for the Super Admin role and protects access to system-wide administrative controls.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/screencapture-barangaylawangbato-site-super-admin-login-2026-09-11-16_08_27.png",
+                                    "Super Admin login",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Super Admin Dashboard",
+                            access: "Super administrators",
+                            description:
+                                "The dashboard provides the Super Admin with a system-wide overview and navigation to the platform's main management areas.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/screencapture-barangaylawangbato-site-super-admin-dashboard-2026-09-11-14_44_11.png",
+                                    "Super Admin dashboard",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Account Management",
+                            access: "Super administrators",
+                            description:
+                                "Super Admin can create and manage administrative accounts and assign the appropriate roles for the different LBDSS modules.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/screencapture-barangaylawangbato-site-super-admin-account-management-2026-09-11-14_44_37.png",
+                                    "Admin account management",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/Screenshot 2026-09-11 144458.png",
+                                    "Create new admin account",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Announcements",
+                            access: "Super administrators",
+                            description:
+                                "This section allows Super Admin to create and manage announcements that are shared across the resident-facing platform.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/screencapture-barangaylawangbato-site-super-admin-announcement-management-2026-09-11-14_45_34.png",
+                                    "Super Admin announcement management",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/Screenshot 2026-09-11 144547.png",
+                                    "Create announcement form",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Barangay Official Management",
+                            access: "Super administrators",
+                            description:
+                                "Super Admin can maintain the official profiles displayed to residents, including barangay and SK official information.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/screencapture-barangaylawangbato-site-super-admin-barangay-official-management-2026-09-11-14_45_58.png",
+                                    "Barangay official management",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/Screenshot 2026-09-11 144743.png",
+                                    "Official profile management",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Report Generation",
+                            access: "Super administrators",
+                            description:
+                                "Report tools let Super Admin generate and review system records for oversight, while log reports provide visibility into administrative activity.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/screencapture-barangaylawangbato-site-super-admin-report-2026-09-11-14_48_07.png",
+                                    "Super Admin report generation",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/Screenshot 2026-09-11 144849.png",
+                                    "Super Admin log reports",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/Screenshot 2026-09-11 144859.png",
+                                    "Administrative activity logs",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/SUPER ADMIN/Screenshot 2026-09-11 161300.png",
+                                    "Administrative activity logs",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Account Login",
+                            access: "Registered company users",
+                            description:
+                                "Company users sign in through this secure entry point to access employer tools and manage their participation in the job referral service.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-login-2026-09-08-17_43_53.png",
+                                    "Company user login",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Company Registration",
+                            access: "Unregistered company users",
+                            description:
+                                "Prospective employers can register their company account before accessing the company dashboard and submitting job opportunities.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-account-registration-2026-09-11-16_18_40.png",
+                                    "Company registration step one",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-account-registration-2026-09-11-16_18_53.png",
+                                    "Company registration step two",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-account-registration-2026-09-11-16_19_14.png",
+                                    "Company registration step three",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-account-registration-2026-09-11-16_19_36.png",
+                                    "Company registration step four",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Dashboard",
+                            access: "Registered company users",
+                            description:
+                                "The dashboard gives company users an overview of their job postings, applicant activity, and available management tools.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-dashboard-2026-09-08-17_51_08.png",
+                                    "Company dashboard",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Job Management",
+                            access: "Registered company users",
+                            description:
+                                "Companies can create, review, update, and manage job listings with details such as responsibilities, requirements, salary, and deadlines.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-job-management-2026-09-08-17_51_42.png",
+                                    "Job management list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/Screenshot 2026-09-08 175220.png",
+                                    "New job listing form",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/Screenshot 2026-09-08 175202.png",
+                                    "Job details view",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Applicant Management",
+                            access: "Registered company users",
+                            description:
+                                "Company users can review applicants connected to their job listings and examine the information needed during the selection process.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-applicant-management-2026-09-08-17_52_29.png",
+                                    "Applicant management list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-applicant-management-2026-09-08-17_52_41.png",
+                                    "Applicant details",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Processed Applicants",
+                            access: "Registered company users",
+                            description:
+                                "This section keeps track of applicants whose applications have already been reviewed or processed by the company.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-processed-applicants-2026-09-08-17_53_40.png",
+                                    "Processed applicants list",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-processed-applicants-2026-09-08-17_53_49.png",
+                                    "Processed applicant details",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Profile Settings",
+                            access: "Registered company users",
+                            description:
+                                "Company users can update their organization profile and maintain the information displayed to applicants and platform administrators.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-profile-settings-2026-09-08-17_54_00.png",
+                                    "Company profile settings",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Report Generation",
+                            access: "Registered company users",
+                            description:
+                                "Reports help companies review applicant activity and summarize recruitment information related to their job listings.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-report-2026-09-08-17_54_26.png",
+                                    "Company report view",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/screencapture-barangaylawangbato-site-company-generated-reports-2026-09-08-17_55_11.png",
+                                    "Generated company report",
+                                ),
+                                image(
+                                    "../assets/images/projects/lbdss/COMPANIES/Screenshot 2026-09-08 175458.png",
+                                    "Generated applicant report",
+                                ),
+                            ],
+                        },
+                    ],
+                },
+                "sign-depot": {
+                    title: "Sign Depot Company Website",
+                    category: "Web Development",
+                    date: "December 2025",
+                    summary:
+                        "The official company website for The Sign Depot, designed and developed during my On-the-Job Training to present services clearly and provide a responsive, user-friendly online presence.",
+                    role: "Full-stack web development and UI/UX implementation",
+                    tools: ["HTML5", "Laravel", "Tailwind CSS"],
+                    highlights: [
+                        "Responsive layout for desktop and mobile visitors",
+                        "Clear service presentation and business-focused navigation",
+                        "Reusable Tailwind CSS components and consistent visual hierarchy",
+                        "Hands-on implementation of real-world business requirements",
+                    ],
+                    gallery: [
+                        {
+                            title: "Website Preview",
+                            images: [image("../assets/images/sd-website.png", "Sign Depot website preview")],
+                        },
+                    ],
+                },
+            };
+
+            const projectKey = new URLSearchParams(window.location.search).get("project") || "lbdss";
+            const project = projects[projectKey] || projects.lbdss;
+            document.title = `${project.title} - Project Details`;
+
+            const tagMarkup = (items) =>
+                items
+                    .map(
+                        (item) =>
+                            `<span class="bg-blue-50 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">${item}</span>`,
+                    )
+                    .join("");
+            const galleryMarkup = project.gallery
+                .map(
+                    (section, index) => `
+                <section class="mb-12">
+                    ${
+                        index === 0 && project.generalUsersIntro
+                            ? `<div class="mb-8 rounded-xl border border-blue-200 bg-blue-50 p-6">
+                        <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-blue-700">Resident-facing workflows</p>
+                        <h2 class="text-3xl font-bold text-gray-900">${project.generalUsersIntro.title}</h2>
+                        <p class="mt-3 max-w-3xl leading-relaxed text-gray-700">${project.generalUsersIntro.description}</p>
+                    </div>`
+                            : ""
+                    }
+                    ${
+                        index === 3 && project.documentAdminIntro
+                            ? `<div class="mb-8 rounded-xl border border-indigo-200 bg-indigo-50 p-6">
+                        <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-indigo-700">Administrative workflows</p>
+                        <h2 class="text-3xl font-bold text-gray-900">${project.documentAdminIntro.title}</h2>
+                        <p class="mt-3 max-w-3xl leading-relaxed text-gray-700">${project.documentAdminIntro.description}</p>
+                    </div>`
+                            : ""
+                    }
+                    ${
+                        index === 7 && project.jobReferralAdminIntro
+                            ? `<div class="mb-8 rounded-xl border border-emerald-200 bg-emerald-50 p-6">
+                        <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-emerald-700">Administrative workflows</p>
+                        <h2 class="text-3xl font-bold text-gray-900">${project.jobReferralAdminIntro.title}</h2>
+                        <p class="mt-3 max-w-3xl leading-relaxed text-gray-700">${project.jobReferralAdminIntro.description}</p>
+                    </div>`
+                            : ""
+                    }
+                    ${
+                        index === 15 && project.superAdminIntro
+                            ? `<div class="mb-8 rounded-xl border border-rose-200 bg-rose-50 p-6">
+                        <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-rose-700">System-wide administration</p>
+                        <h2 class="text-3xl font-bold text-gray-900">${project.superAdminIntro.title}</h2>
+                        <p class="mt-3 max-w-3xl leading-relaxed text-gray-700">${project.superAdminIntro.description}</p>
+                    </div>`
+                            : ""
+                    }
+                    ${
+                        section.title === "Account Login" && project.companyUsersIntro
+                            ? `<div class="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-6">
+                        <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-amber-700">Employer-facing workflows</p>
+                        <h2 class="text-3xl font-bold text-gray-900">${project.companyUsersIntro.title}</h2>
+                        <p class="mt-3 max-w-3xl leading-relaxed text-gray-700">${project.companyUsersIntro.description}</p>
+                    </div>`
+                            : ""
+                    }
+                    <div class="mb-5">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <h2 class="text-2xl font-bold text-gray-900">${section.title}</h2>
+                            <div class="flex flex-wrap items-center gap-3">
+                                ${section.access ? `<span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">${section.access}</span>` : ""}
+                                <span class="text-sm text-gray-500">${section.images.length} sample ${section.images.length === 1 ? "page" : "pages"}</span>
+                            </div>
+                        </div>
+                        ${section.description ? `<p class="mt-2 max-w-3xl text-gray-600 leading-relaxed">${section.description}</p>` : ""}
+                    </div>
+                    ${
+                        section.images.length === 0
+                            ? `<div class="rounded-lg border border-dashed border-gray-300 bg-gray-50 p-5 text-sm text-gray-600">${section.note || section.description}</div>`
+                            : `<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        ${section.images
+                            .map(
+                                (
+                                    item,
+                                ) => `<figure class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            <button type="button" class="gallery-trigger block w-full text-left focus:outline-none focus:ring-4 focus:ring-blue-300" data-image-src="${item.path}" data-image-alt="${item.label}" aria-label="Expand ${item.label}">
+                                <img src="${item.path}" alt="${item.label}" loading="lazy" class="gallery-image w-full bg-gray-100 transition-transform duration-300 hover:scale-105" />
+                            </button>
+                            <figcaption class="p-4 text-sm font-medium text-gray-700">${item.label}</figcaption>
+                        </figure>`,
+                            )
+                            .join("")}
+                            </div>`
+                    }
+                </section>
+            `,
+                )
+                .join("");
+
+            document.getElementById("project-content").innerHTML = `
+                <header class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 text-white py-16">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-fadeIn">
+                        <a href="works.html" class="inline-flex items-center text-blue-100 hover:text-white mb-8">&larr; Back to Sample Works</a>
+                        <div class="flex flex-wrap items-center gap-3 mb-4">
+                            <span class="bg-white/15 text-white text-sm font-semibold px-3 py-1 rounded-full">${project.category}</span>
+                            <span class="text-blue-100">${project.date}</span>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-bold mb-5">${project.title}</h1>
+                        <p class="text-xl text-blue-100 max-w-3xl leading-relaxed">${project.summary}</p>
+                    </div>
+                </header>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="grid lg:grid-cols-3 gap-8 mb-14">
+                        <section class="lg:col-span-2 bg-white rounded-xl shadow-md p-7">
+                            <h2 class="text-2xl font-bold mb-4">Project Overview</h2>
+                            <p class="text-gray-700 leading-relaxed mb-6">${project.summary} This project gave me practical experience translating user needs into a structured, accessible interface and working through the details of a real production-oriented workflow.</p>
+                            <h3 class="font-semibold text-gray-900 mb-3">My contribution</h3>
+                            <p class="text-gray-700 leading-relaxed">${project.role}.</p>
+                        </section>
+                        <aside class="bg-white rounded-xl shadow-md p-7">
+                            <h2 class="text-2xl font-bold mb-4">Tools & Technologies</h2>
+                            <div class="flex flex-wrap gap-2">${tagMarkup(project.tools)}</div>
+                        </aside>
+                    </div>
+                    <section class="mb-14">
+                        <h2 class="text-3xl font-bold mb-6">Key Features & Outputs</h2>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            ${project.highlights.map((highlight) => `<div class="bg-white border-l-4 border-blue-600 rounded-r-lg shadow-sm p-5 text-gray-700">${highlight}</div>`).join("")}
+                        </div>
+                    </section>
+                    <section>
+                        <div class="mb-8">
+                            <p class="text-blue-600 font-semibold uppercase tracking-wide text-sm mb-2">Interface samples</p>
+                            <h2 class="text-3xl font-bold">Screens, Pages & UI</h2>
+                            <p class="text-gray-600 mt-3 max-w-2xl">Browse the available screens and interface samples from this project. Select an image in your browser to inspect it at full size.</p>
+                        </div>
+                        ${galleryMarkup}
+                    </section>
+                    <div class="border-t pt-8 mt-4">
+                        <a href="works.html" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800">&larr; Return to all projects</a>
+                    </div>
+                </div>
+                <div id="image-lightbox" class="hidden fixed inset-0 z-[100] bg-black/90 p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
+                    <button id="lightbox-close" type="button" class="absolute top-4 right-4 z-10 h-11 w-11 rounded-full bg-white/15 text-3xl leading-none text-white hover:bg-white/25 focus:outline-none focus:ring-4 focus:ring-white/50" aria-label="Close expanded image">&times;</button>
+                    <div id="lightbox-backdrop" class="flex h-full w-full items-center justify-center">
+                        <figure class="relative flex max-h-full max-w-6xl flex-col items-center">
+                            <img id="lightbox-image" src="" alt="" class="max-h-[calc(100vh-7rem)] max-w-full rounded-lg object-contain shadow-2xl" />
+                            <figcaption id="lightbox-caption" class="mt-4 text-center text-sm font-medium text-white"></figcaption>
+                        </figure>
+                    </div>
+                </div>
+            `;
+
+            const lightbox = document.getElementById("image-lightbox");
+            const lightboxImage = document.getElementById("lightbox-image");
+            const lightboxCaption = document.getElementById("lightbox-caption");
+            const closeLightbox = () => {
+                lightbox.classList.add("hidden");
+                document.body.classList.remove("lightbox-open");
+                lightboxImage.src = "";
+            };
+            const openLightbox = (trigger) => {
+                lightboxImage.src = trigger.dataset.imageSrc;
+                lightboxImage.alt = trigger.dataset.imageAlt;
+                lightboxCaption.textContent = trigger.dataset.imageAlt;
+                lightbox.classList.remove("hidden");
+                document.body.classList.add("lightbox-open");
+                document.getElementById("lightbox-close").focus();
+            };
+
+            document.querySelectorAll(".gallery-trigger").forEach((trigger) => {
+                trigger.addEventListener("click", () => openLightbox(trigger));
+            });
+            document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+            document.getElementById("lightbox-backdrop").addEventListener("click", (event) => {
+                if (event.target.id === "lightbox-backdrop") closeLightbox();
+            });
+            document.addEventListener("keydown", (event) => {
+                if ((event.key === "Escape" || event.key === "Esc") && !lightbox.classList.contains("hidden")) {
+                    closeLightbox();
+                }
+            });
+
+            document.getElementById("mobile-menu-button").addEventListener("click", () => {
+                document.getElementById("mobile-menu").classList.toggle("hidden");
+            });
+        </script>
+    </body>
+</html>
