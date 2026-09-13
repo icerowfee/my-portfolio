@@ -139,10 +139,10 @@
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-gray-800 mb-1">Email Address</h3>
-                                    <a href="mailto:your.email@example.com" class="text-blue-600 hover:text-blue-800">
+                                    <a href="mailto:israfeanaelmagbag03@gmail.com" class="text-blue-600 hover:text-blue-800">
                                         israfeanaelmagbag03@gmail.com
                                     </a>
-                                    <p class="text-gray-600 text-sm mt-1">Professional student email</p>
+                                    <p class="text-gray-600 text-sm mt-1">Professional email</p>
                                 </div>
                             </div>
 
@@ -276,7 +276,15 @@
                             Fill out the form below and I'll get back to you as soon as possible.
                         </p>
 
-                        <form id="contactForm" class="space-y-6">
+                        <form
+                            id="contactForm"
+                            action="https://formsubmit.co/ajax/israfeanaelmagbag03@gmail.com"
+                            method="POST"
+                            class="space-y-6"
+                        >
+                            <input type="hidden" name="_subject" value="New portfolio contact message" />
+                            <input type="hidden" name="_template" value="table" />
+                            <input type="hidden" name="_captcha" value="false" />
                             <!-- Name -->
                             <div>
                                 <label for="name" class="block text-sm font-semibold text-gray-700 mb-2"
@@ -340,6 +348,7 @@
                             <!-- Submit Button -->
                             <div>
                                 <button
+                                    id="sendMessageButton"
                                     type="submit"
                                     class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
                                 >
@@ -355,13 +364,8 @@
                                 </button>
                             </div>
 
-                            <!-- Note about form functionality -->
-                            <p class="text-sm text-gray-500 italic">
-                                Note: This is a static HTML form. To make it functional, you'll need to integrate it
-                                with a backend service (e.g., Formspree, EmailJS, or your hosting provider's form
-                                handling service). Alternatively, you can configure it to open the user's email client
-                                with pre-filled information.
-                            </p>
+                            <p id="formStatus" class="text-sm text-gray-600" role="status" aria-live="polite"></p>
+
                         </form>
                     </div>
                 </div>
@@ -410,28 +414,40 @@
                 mobileMenu.classList.toggle("hidden");
             });
 
-            // Contact form handling (basic client-side validation)
             const contactForm = document.getElementById("contactForm");
-            contactForm.addEventListener("submit", function (e) {
+            const formStatus = document.getElementById("formStatus");
+            const sendMessageButton = document.getElementById("sendMessageButton");
+            contactForm.addEventListener("submit", async function (e) {
                 e.preventDefault();
 
-                // Get form values
-                const name = document.getElementById("name").value;
-                const email = document.getElementById("email").value;
-                const subject = document.getElementById("subject").value;
-                const message = document.getElementById("message").value;
+                const formData = new FormData(contactForm);
+                sendMessageButton.disabled = true;
+                sendMessageButton.classList.add("opacity-50", "cursor-not-allowed");
+                sendMessageButton.textContent = "Sending...";
+                formStatus.textContent = "Sending your message...";
 
-                // For demonstration: Open email client with pre-filled information
-                const mailtoLink = `mailto:your.email@example.com?subject=${encodeURIComponent(
-                    subject,
-                )}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message)}`;
-                window.location.href = mailtoLink;
+                try {
+                    const response = await fetch(contactForm.action, {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            Accept: "application/json",
+                        },
+                    });
 
-                // Show confirmation (you can customize this)
-                alert("Thank you for your message! Your email client will open to send the message.");
+                    if (!response.ok) {
+                        throw new Error("Message could not be sent.");
+                    }
 
-                // Reset form
-                contactForm.reset();
+                    contactForm.reset();
+                    formStatus.textContent = "Your message was sent successfully. Thank you!";
+                } catch (error) {
+                    formStatus.textContent = "Something went wrong. Please email me directly instead.";
+                } finally {
+                    sendMessageButton.disabled = false;
+                    sendMessageButton.classList.remove("opacity-50", "cursor-not-allowed");
+                    sendMessageButton.innerHTML = `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v10a2 2 0 002-2z"></path></svg>Send Message`;
+                }
             });
         </script>
     </body>
