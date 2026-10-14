@@ -23,6 +23,12 @@
                 aspect-ratio: 16 / 10;
                 object-fit: cover;
             }
+            .case-study-panel {
+                border: 1px solid rgb(226 232 240);
+                border-radius: 1rem;
+                background: white;
+                box-shadow: 0 8px 24px rgb(15 23 42 / 0.06);
+            }
             body.lightbox-open {
                 overflow: hidden;
             }
@@ -97,7 +103,7 @@
                     summary:
                         "A web-based digital services platform developed for Barangay Lawang Bato to streamline resident document requests, job referrals, announcements, and administrative processes.",
                     role: "Full-stack development, interface design, and system documentation",
-                    tools: ["Laravel", "Tailwind CSS", "Livewire", "Alpine.js", "MySQL"],
+                    tools: ["Laravel", "PHP", "Livewire", "Alpine.js", "Tailwind CSS", "MySQL"],
                     highlights: [
                         "Centralized digital requests for barangay documents and clearances",
                         "Separate workflows for residents, administrators, and company users",
@@ -676,7 +682,7 @@
                     summary:
                         "The official company website for The Sign Depot, designed and developed to present services clearly and provide a responsive, user-friendly online presence.",
                     role: "Full-stack web development and UI/UX implementation",
-                    tools: ["HTML5", "Laravel", "Tailwind CSS"],
+                    tools: ["Laravel", "PHP", "Blade", "Tailwind CSS", "Alpine.js", "Vite"],
                     highlights: [
                         "Responsive layout for desktop and mobile visitors",
                         "Clear service presentation and business-focused navigation",
@@ -781,6 +787,118 @@
                                 image(
                                     "../assets/images/projects/signdepot-website/contacts/Screenshot 2026-09-14 113941.png",
                                     "Contact form section",
+                                ),
+                            ],
+                        },
+                    ],
+                },
+                "ai-lead-intake": {
+                    title: "AI Lead Intake & Qualification Automation",
+                    category: "AI Automation",
+                    date: "October 2026",
+                    summary:
+                        "An automated lead management workflow built with n8n that captures incoming leads, analyzes them with AI, assigns a lead score, routes them by priority, updates Google Sheets, sends follow-up emails, and alerts the sales team about high-value leads.",
+                    role: "Workflow automation, lead qualification logic, API integration, and failure handling",
+                    problem:
+                        "Manually reviewing and prioritizing leads can be repetitive, slow, and inconsistent. The goal was to create a workflow that could qualify leads automatically while keeping the scoring logic structured and explainable.",
+                    solution:
+                        "The workflow normalizes lead data, checks for existing records, analyzes lead intent, urgency, and clarity using AI, calculates a deterministic score, updates Google Sheets, sends personalized email responses, and alerts the sales team through Telegram for high-priority leads.",
+                    tools: [
+                        "n8n",
+                        "JavaScript",
+                        "Groq AI",
+                        "Google Sheets API",
+                        "Gmail API",
+                        "Telegram Bot API",
+                        "OAuth 2.0",
+                    ],
+                    highlights: [
+                        "Automated lead intake and normalization",
+                        "Duplicate detection using email address and requested service",
+                        "AI analysis of intent, urgency, and clarity",
+                        "100-point deterministic scoring system",
+                        "HOT / WARM / COLD lead classification",
+                        "Automatic Google Sheets updates",
+                        "Personalized email follow-ups",
+                        "Telegram alerts for HOT leads",
+                        "Centralized error handling with Telegram notifications",
+                    ],
+                    scoring: [
+                        "Intent: 30 points",
+                        "Urgency: 20 points",
+                        "Budget: 20 points",
+                        "Timeline: 15 points",
+                        "Company Size: 10 points",
+                        "Clarity: 5 points",
+                    ],
+                    classification: [
+                        "75–100: HOT",
+                        "50–74: WARM",
+                        "0–49: COLD",
+                    ],
+                    challenge:
+                        "One challenge was handling cases where the same email address submitted inquiries for different services. I solved this by checking both the email and service before deciding whether to update an existing record or create a new one.",
+                    learning:
+                        "This project gave me hands-on experience with workflow automation, API integrations, OAuth 2.0, AI output structuring, JavaScript business logic, conditional routing, duplicate handling, and error monitoring.",
+                    suggestedScreenshots: [
+                        "Full n8n workflow",
+                        "Lead form",
+                        "Google Sheets result",
+                        "HOT Telegram alert",
+                        "Automated email",
+                        "Error notification",
+                    ],
+                    gallery: [
+                        {
+                            title: "Lead Intake & Qualification Workflow",
+                            description:
+                                "The workflow connects intake, normalization, duplicate detection, AI analysis, scoring, routing, and notifications into one repeatable automation.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/ai-lead-generation-automation/whole-lead-generation-wf.png",
+                                    "Complete n8n lead generation workflow",
+                                ),
+                                image(
+                                    "../assets/images/projects/ai-lead-generation-automation/ai-analysis-node.png",
+                                    "AI lead analysis node",
+                                ),
+                                image(
+                                    "../assets/images/projects/ai-lead-generation-automation/lead-scoring-code-node.png",
+                                    "Lead scoring JavaScript code node",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Lead Intake & Records",
+                            description:
+                                "The automation receives lead submissions, stores structured records in Google Sheets, and keeps the intake process organized for follow-up.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/ai-lead-generation-automation/lead-submission-form.png",
+                                    "Lead submission form",
+                                ),
+                                image(
+                                    "../assets/images/projects/ai-lead-generation-automation/gsheets-lead-record.png",
+                                    "Google Sheets lead record",
+                                ),
+                            ],
+                        },
+                        {
+                            title: "Follow-up & Notifications",
+                            description:
+                                "Qualified leads trigger personalized follow-up emails, while HOT leads and workflow failures are surfaced through Telegram notifications.",
+                            images: [
+                                image(
+                                    "../assets/images/projects/ai-lead-generation-automation/follow-up-email.png",
+                                    "Automated follow-up email",
+                                ),
+                                image(
+                                    "../assets/images/projects/ai-lead-generation-automation/hot-lead-telegram-message-notification.png",
+                                    "HOT lead Telegram notification",
+                                ),
+                                image(
+                                    "../assets/images/projects/ai-lead-generation-automation/tg-error-notification.png",
+                                    "Telegram workflow error notification",
                                 ),
                             ],
                         },
@@ -893,25 +1011,70 @@
                         <p class="text-xl text-blue-100 max-w-3xl leading-relaxed">${project.summary}</p>
                     </div>
                 </header>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div class="grid lg:grid-cols-3 gap-8 mb-14">
-                        <section class="lg:col-span-2 bg-white rounded-xl shadow-md p-7">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
+                    <div class="grid lg:grid-cols-3 gap-6 mb-10">
+                        <section class="case-study-panel lg:col-span-2 p-7 md:p-8">
                             <h2 class="text-2xl font-bold mb-4">Project Overview</h2>
-                            <p class="text-gray-700 leading-relaxed mb-6">${project.summary} This project gave me practical experience translating user needs into a structured, accessible interface and working through the details of a real production-oriented workflow.</p>
+                            <p class="text-gray-700 leading-relaxed mb-6">${project.summary}</p>
                             <h3 class="font-semibold text-gray-900 mb-3">My contribution</h3>
                             <p class="text-gray-700 leading-relaxed">${project.role}.</p>
                         </section>
-                        <aside class="bg-white rounded-xl shadow-md p-7">
+                        <aside class="case-study-panel p-7 md:p-8">
                             <h2 class="text-2xl font-bold mb-4">Tools & Technologies</h2>
                             <div class="flex flex-wrap gap-2">${tagMarkup(project.tools)}</div>
                         </aside>
                     </div>
-                    <section class="mb-14">
-                        <h2 class="text-3xl font-bold mb-6">Key Features & Outputs</h2>
-                        <div class="grid md:grid-cols-2 gap-4">
+                    ${
+                        project.problem && project.solution
+                            ? `<section class="case-study-panel grid md:grid-cols-2 gap-0 mb-10 overflow-hidden">
+                        <div class="p-7 md:p-8">
+                            <h2 class="text-2xl font-bold mb-4">The Problem</h2>
+                            <p class="text-gray-700 leading-relaxed">${project.problem}</p>
+                        </div>
+                        <div class="border-t border-slate-200 p-7 md:border-l md:border-t-0 md:p-8">
+                            <h2 class="text-2xl font-bold mb-4">The Solution</h2>
+                            <p class="text-gray-700 leading-relaxed">${project.solution}</p>
+                        </div>
+                    </section>`
+                            : ""
+                    }
+                    <section class="mb-10">
+                        <div class="mb-5">
+                            <p class="text-blue-600 font-semibold uppercase tracking-wide text-sm mb-2">What the workflow does</p>
+                            <h2 class="text-3xl font-bold">Key Features & Outputs</h2>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-3">
                             ${project.highlights.map((highlight) => `<div class="bg-white border-l-4 border-blue-600 rounded-r-lg shadow-sm p-5 text-gray-700">${highlight}</div>`).join("")}
                         </div>
                     </section>
+                    ${
+                        project.scoring && project.classification
+                            ? `<section class="case-study-panel grid md:grid-cols-2 gap-0 mb-10 overflow-hidden">
+                        <div class="p-7 md:p-8">
+                            <h2 class="text-2xl font-bold mb-4">Lead Scoring</h2>
+                            <div class="space-y-3">${project.scoring.map((item) => `<div class="flex justify-between gap-4 border-b border-gray-100 pb-2 text-gray-700"><span>${item.split(":")[0]}</span><span class="font-semibold text-blue-700">${item.split(":").slice(1).join(":").trim()}</span></div>`).join("")}</div>
+                        </div>
+                        <div class="border-t border-slate-200 p-7 md:border-l md:border-t-0 md:p-8">
+                            <h2 class="text-2xl font-bold mb-4">Classification</h2>
+                            <div class="space-y-3">${project.classification.map((item) => `<div class="rounded-lg bg-blue-50 px-4 py-3 font-semibold text-blue-800">${item}</div>`).join("")}</div>
+                        </div>
+                    </section>`
+                            : ""
+                    }
+                    ${
+                        project.challenge && project.learning
+                            ? `<section class="grid md:grid-cols-2 gap-6 mb-10">
+                        <div class="rounded-xl border border-amber-200 bg-amber-50 p-7 md:p-8">
+                            <h2 class="text-2xl font-bold mb-4">Technical Challenge</h2>
+                            <p class="text-gray-700 leading-relaxed">${project.challenge}</p>
+                        </div>
+                        <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-7 md:p-8">
+                            <h2 class="text-2xl font-bold mb-4">What I Learned</h2>
+                            <p class="text-gray-700 leading-relaxed">${project.learning}</p>
+                        </div>
+                    </section>`
+                            : ""
+                    }
                     <section>
                         <div class="mb-8">
                             <p class="text-blue-600 font-semibold uppercase tracking-wide text-sm mb-2">Interface samples</p>
@@ -920,6 +1083,14 @@
                         </div>
                         ${galleryMarkup}
                     </section>
+                    ${
+                        project.suggestedScreenshots
+                            ? `<section class="mt-14 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-7">
+                        <h2 class="text-2xl font-bold mb-4">Suggested Portfolio Screenshots</h2>
+                        <div class="flex flex-wrap gap-3">${project.suggestedScreenshots.map((item) => `<span class="rounded-full bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm">${item}</span>`).join("")}</div>
+                    </section>`
+                            : ""
+                    }
                     <div class="border-t pt-8 mt-4">
                         <a href="works.html" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800">&larr; Return to all projects</a>
                     </div>
