@@ -1083,14 +1083,7 @@
                         </div>
                         ${galleryMarkup}
                     </section>
-                    ${
-                        project.suggestedScreenshots
-                            ? `<section class="mt-14 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-7">
-                        <h2 class="text-2xl font-bold mb-4">Suggested Portfolio Screenshots</h2>
-                        <div class="flex flex-wrap gap-3">${project.suggestedScreenshots.map((item) => `<span class="rounded-full bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm">${item}</span>`).join("")}</div>
-                    </section>`
-                            : ""
-                    }
+                    
                     <div class="border-t pt-8 mt-4">
                         <a href="works.html" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800">&larr; Return to all projects</a>
                     </div>
